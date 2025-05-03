@@ -5,6 +5,10 @@ import pickle as pk
 # Load the trained model
 model = pk.load(open('House Price Prediction Using Machine Learning/House_prediction_model.pkl', 'rb'))
 
+# Get the absolute path to the model file
+model_path = os.path.join('/mount/src/house-price-prediction-app-using-machine-learning-main/House Price Prediction Using Machine Learning', 'House_prediction_model.pkl')
+model = pk.load(open(model_path, 'rb'))
+
 # Add a header with styled markdown
 st.markdown(
     """
@@ -16,7 +20,9 @@ st.markdown(
 )
 
 # Load the data
-data = pd.read_csv('House Price Prediction Using Machine Learning/cleaned_data.csv')
+# Get the absolute path to the data file
+data_path = os.path.join('/mount/src/house-price-prediction-app-using-machine-learning-main/House Price Prediction Using Machine Learning', 'cleaned_data.csv')
+data = pd.read_csv(data_path)
 
 # Add a sidebar for user inputs
 st.sidebar.header('Input Features')
