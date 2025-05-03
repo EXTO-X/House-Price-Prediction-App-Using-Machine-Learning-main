@@ -1,9 +1,11 @@
 import streamlit as st
 import pandas as pd
+import numpy as np
 import pickle as pk
 
 # Load the trained model
 import os
+from prediction_pipeline import PredictionPipeline
 
 # Get the absolute path to the current script's directory
 current_dir = os.path.dirname(os.path.abspath(__file__))
