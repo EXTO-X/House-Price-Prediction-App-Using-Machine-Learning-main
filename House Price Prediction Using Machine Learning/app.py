@@ -3,13 +3,7 @@ import pandas as pd
 import pickle as pk
 
 # Load the trained model
-import os
-
-# Get the directory where app.py is located
-app_dir = os.path.dirname(os.path.abspath(__file__))
-# Construct the full path to the model file
-model_path = os.path.join(app_dir, 'House_prediction_model.pkl')
-model = pk.load(open(model_path, 'rb'))
+model = pk.load(open('House Price Prediction Using Machine Learning/House_prediction_model.pkl', 'rb'))
 
 # Add a header with styled markdown
 st.markdown(
@@ -22,9 +16,7 @@ st.markdown(
 )
 
 # Load the data
-# Construct the full path to the data file
-data_path = os.path.join(app_dir, 'cleaned_data.csv')
-data = pd.read_csv(data_path)
+data = pd.read_csv('House Price Prediction Using Machine Learning/cleaned_data.csv')
 
 # Add a sidebar for user inputs
 st.sidebar.header('Input Features')
