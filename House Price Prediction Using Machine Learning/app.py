@@ -5,28 +5,11 @@ import pickle as pk
 # Load the trained model
 import os
 
-def load_file(filename):
-    # Try different possible paths
-    paths_to_try = [
-        filename,  # Try direct path
-        os.path.join('House Price Prediction Using Machine Learning', filename),  # Try relative to root
-        os.path.join(os.path.dirname(__file__), filename),  # Try relative to script
-        os.path.join('/mount/src/house-price-prediction-app-using-machine-learning-main/House Price Prediction Using Machine Learning', filename)  # Try absolute path
-    ]
-    
-    for path in paths_to_try:
-        try:
-            return path if os.path.exists(path) else None
-        except:
-            continue
-    return None
+# Get the absolute path to the current script's directory
+current_dir = os.path.dirname(os.path.abspath(__file__))
 
-# Find and load the model file
-model_path = load_file('House_prediction_model.pkl')
-if model_path is None:
-    st.error('Could not find the model file. Please check the file path.')
-    st.stop()
-
+# Load the model file from the same directory as the script
+model_path = os.path.join(current_dir, 'House_prediction_model.pkl')
 model = pk.load(open(model_path, 'rb'))
 
 # Add a header with styled markdown
@@ -40,11 +23,7 @@ st.markdown(
 )
 
 # Load the data
-data_path = load_file('cleaned_data.csv')
-if data_path is None:
-    st.error('Could not find the data file. Please check the file path.')
-    st.stop()
-
+data_path = os.path.join(current_dir, 'cleaned_data.csv')
 data = pd.read_csv(data_path)
 
 # Add a sidebar for user inputs
